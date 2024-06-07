@@ -1,0 +1,8 @@
+name: say-hello
+on: push 
+jobs:
+  say-hello-job:
+     runs-on: ubuntu-latest
+     steps:
+       - name: access repo code
+         uses: actions/checkout@v4.1.5
