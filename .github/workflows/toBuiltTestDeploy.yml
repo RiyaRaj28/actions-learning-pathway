@@ -1,7 +1,7 @@
 name: hello-here
 on: push
 jobs:
-  say-hello-job:
+  say-hello-build-job:
     runs-on: ubuntu-latest
     steps:
       - name: read repo codes
@@ -12,3 +12,18 @@ jobs:
           node-vesrion: '18.x'
       - run: npm install
       - run: npm run build 
+      
+  test:
+   needs: say-hello-build-job
+   runs-on: ubuntu-latest
+   steps:
+     - name: to check repo codes
+       uses: actions/checkout@v4.1.5
+     - name: set nodejs version
+       uses: actions/setup-node@v4.0.2
+       with:
+         node-version: '18.x'
+     - run: npm install
+     - run: npm test 
+
+
